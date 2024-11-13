@@ -1,0 +1,13 @@
+version: '3'
+rpc:
+    listen: 'tcp://0.0.0.0:6001'
+grpc:
+    listen: 'tcp://0.0.0.0:9001'
+    proto:
+        - ./proto/currency/service.proto
+    pool:
+        num_workers: 1
+        debug: true
+server:
+    command: 'php app.php'
+    relay: pipes

@@ -1,0 +1,16 @@
+// ./proto/currency/message.proto
+syntax = "proto3";
+
+package currency.dto;
+
+option php_namespace = "GRPCContracts\\Currency";
+option php_metadata_namespace = "GRPCContracts\\Currency\\GPBMetadata";
+
+message GetRateRequest {
+  string ticker = 1;
+}
+
+message CurrencyRateResponse {
+  string ticker = 1;
+  string rate = 2;
+}

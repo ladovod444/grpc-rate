@@ -1,0 +1,26 @@
+# ./docker-compose.yml
+version: '2'
+
+services:
+  rr:
+    build:
+      dockerfile: ./deployment/docker/roadrunner/Dockerfile
+    ports:
+      - '9001:9001' # шарим порт 9001
+    user: '1000:1000' # работа от текущего юзера в системе
+    volumes:
+      - ./:/app # монтируем проект в /app
+      - ./deployment/docker/roadrunner/xdebug.ini:/usr/local/etc/php/conf.d/xdebug.ini
+    environment:
+      PHP_IDE_CONFIG: 'serverName=rr'
+
+  php-cli:
+    build:
+      dockerfile: ./deployment/docker/php-cli/Dockerfile
+    user: '1000:1000'
+    environment:
+      PHP_IDE_CONFIG: 'serverName=rr'
+    tty: true
+    volumes:
+      - ./:/app
+      - ./deployment/docker/roadrunner/xdebug.ini:/usr/local/etc/php/conf.d/xdebug.ini

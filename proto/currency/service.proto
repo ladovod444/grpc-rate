@@ -1,0 +1,14 @@
+// ./proto/currency/service.proto
+syntax = "proto3";
+
+package currency;
+
+option php_namespace = "GRPCContracts\\Currency";
+option php_metadata_namespace = "GRPCContracts\\Currency\\GPBMetadata";
+
+import "message.proto";
+
+service CurrencyRateService {
+  rpc GetRate (currency.dto.GetRateRequest) returns (currency.dto.CurrencyRateResponse) {
+  }
+}
